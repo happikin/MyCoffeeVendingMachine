@@ -141,16 +141,17 @@ void lcd_FloatingPrint(char* txt) {
 	}
 }
 int menu_nav() {
-	uint8_t choice = 0,navIndex=0;
+	int8_t choice = -1,navIndex=0;
 	
-	while(!choice) {
+	while(choice == -1) {
 		if(_switch_up_){navIndex++;while(_switch_up_);}
 		else if(_switch_down_) {navIndex--;while(_switch_down_);}
 		if(navIndex>6){navIndex=0;}
+		if(navIndex<0){navIndex=6;}
 		lcd_curPos(1,0);
 		lcd_print(coffee_types[navIndex].coffee_name);		
 		while(!_switch_up_ & !_switch_down_ & !_switch_ok_);
-		if(_switch_ok_){choice=navIndex;while(_switch_ok_);}
+		if(_switch_ok_){choice=navIndex;}
 	}
 	return choice;
 }

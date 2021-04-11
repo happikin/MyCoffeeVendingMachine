@@ -112,17 +112,24 @@ void lcd_NumPrint(int a) {
 	lcd_cmd(clearLCD);
 	_delay_ms(2);
 	uint32_t q,r;
-	q=a;
 	int i=0;
-	while(q) {
-		r=q%10;
-		q=q/10;
-		r+=48;
+	q=a;
+	if(q%10==0){
 		lcd_curPos(1,15-i);
-		lcd_data((uint8_t)r);
-		i++;
+		lcd_data((uint8_t)48);
 	}
-	lcd_curPos(1,15-i);
+	else
+	{
+		while(q) {
+			r=q%10;
+			q=q/10;
+			r+=48;
+			lcd_curPos(1,15-i);
+			lcd_data((uint8_t)r);
+			i++;
+		}
+		lcd_curPos(1,15-i);
+	}
 }
 /*
 int checkMode() {
