@@ -89,6 +89,8 @@ int main(void)
 			lcd_NumPrint(selection);
 			_delay_ms(1500);
 			lcd_cmd(clearLCD);
+			lcd_curPos(0,0);
+			lcd_print("TO CONFIRM ORDER");
 			lcd_curPos(1,0);
 			lcd_print("PRESS OK/CANCEL");
 			uint8_t choice = 0;
@@ -122,24 +124,6 @@ int main(void)
 		}		
 		//- - - - - - - - - - - - - - - - - - - - -
 		
-		
-		/*previtem = item;
-		if(_switch_up_) {
-			item++;
-		}
-		if(_switch_down_) {
-			item--;
-		}
-		if(the button is pressed ) {
-			showItem();
-		}
-		if(previtem == item) {
-			lcd_curPos(1,0);
-			lcd_print(coffee_types[item].coffee_name);
-			_delay_ms(1000);
-			lcd_NumPrint(coffee_types[item].price);
-			_delay_ms(1000);
-		}*/
     }
 }
 void lcd_FloatingPrint(char* txt) {
