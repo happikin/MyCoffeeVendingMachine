@@ -11,6 +11,7 @@
 #define _switch_up_ !(PINB & (1 << 7))
 #define _switch_down_ !(PINB & (1 << 6))
 #define _switch_ok_ !(PINB & (1 << 5))
+#define _switch_cancel_ !(PINB & (1 << 4))
 typedef struct {
 	char* coffee_name;
 	uint8_t price;
@@ -44,6 +45,7 @@ int main(void)
 	set_pin(PORTB,PINB7);
 	set_pin(PORTB,PINB6);
 	set_pin(PORTB,PINB5);
+	set_pin(PORTB,PINB4);
 	
 	modes wlcm,menu,cnfrm;
 	
@@ -58,6 +60,7 @@ int main(void)
 	
 	__init_lcd_();
 	int selection = -1;
+	flag confirmation=invalid;
 	previtem=item;
     while (1)  
     {
@@ -69,7 +72,11 @@ int main(void)
 			menu.mode_status = valid;
 		}
 		else if(menu.mode_status == valid) {
+			lcd_cmd(clearLCD);
+			lcd_curPos(0,0);
 			lcd_print("make a selection");
+			confirmation = invalid;
+			selection = -1;
 			_delay_ms(3000);
 			selection = menu_nav();
 			lcd_cmd(clearLCD);
@@ -80,8 +87,33 @@ int main(void)
 		else if(cnfrm.mode_status == valid) {
 			lcd_cmd(clearLCD);
 			lcd_NumPrint(selection);
-			_delay_ms(4000);
+			_delay_ms(1500);
 			lcd_cmd(clearLCD);
+			lcd_curPos(1,0);
+			lcd_print("PRESS OK/CANCEL");
+			uint8_t choice = 0;
+			while(!choice) {
+				if(_switch_ok_) {
+					confirmation = valid;
+					choice = 1;
+				}
+				else if(_switch_cancel_) {
+					confirmation = invalid;
+					choice = 1;
+				}
+			}
+			
+			if(confirmation == valid) {
+				lcd_cmd(clearLCD);
+				lcd_curPos(0,0);
+				lcd_print("ORDER CONFIRMED!");
+				_delay_ms(2000);
+			} else if(confirmation == invalid) {
+				lcd_cmd(clearLCD);
+				lcd_curPos(0,0);
+				lcd_print("ORDER CANCELLED!");
+				_delay_ms(2000);
+			}
 			//if confirmed the selection then
 			//display thank you!
 			// if declined then
@@ -91,13 +123,6 @@ int main(void)
 		//- - - - - - - - - - - - - - - - - - - - -
 		
 		
-		
-		if(_switch_up_) {
-			sw_up  = 1;
-		}
-		else {
-			sw_up = 0;
-		}
 		/*previtem = item;
 		if(_switch_up_) {
 			item++;
@@ -105,7 +130,7 @@ int main(void)
 		if(_switch_down_) {
 			item--;
 		}
-		if(/* the button is pressed ) {
+		if(the button is pressed ) {
 			showItem();
 		}
 		if(previtem == item) {

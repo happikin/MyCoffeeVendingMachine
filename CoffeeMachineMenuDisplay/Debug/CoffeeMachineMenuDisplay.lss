@@ -3,31 +3,31 @@ CoffeeMachineMenuDisplay.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000046a  00000000  00000000  00000094  2**1
+  0 .text         000004f6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         000000e4  00800060  0000046a  000004fe  2**0
+  1 .data         00000116  00800060  000004f6  0000058a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000005  00800144  00800144  000005e2  2**0
+  2 .bss          00000004  00800176  00800176  000006a0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000005e2  2**0
+  3 .comment      00000030  00000000  00000000  000006a0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000614  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006d0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000060  00000000  00000000  00000650  2**0
+  5 .debug_aranges 00000060  00000000  00000000  0000070c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000c83  00000000  00000000  000006b0  2**0
+  6 .debug_info   00000e0a  00000000  00000000  0000076c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000006cf  00000000  00000000  00001333  2**0
+  7 .debug_abbrev 000006da  00000000  00000000  00001576  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000590  00000000  00000000  00001a02  2**0
+  8 .debug_line   00000626  00000000  00000000  00001c50  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000128  00000000  00000000  00001f94  2**2
+  9 .debug_frame  00000128  00000000  00000000  00002278  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000044d  00000000  00000000  000020bc  2**0
+ 10 .debug_str    0000045a  00000000  00000000  000023a0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000006b4  00000000  00000000  00002509  2**0
+ 11 .debug_loc    000007e2  00000000  00000000  000027fa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000068  00000000  00000000  00002bbd  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00002fdc  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,18 +67,18 @@ Disassembly of section .text:
   60:	11 e0       	ldi	r17, 0x01	; 1
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ea e6       	ldi	r30, 0x6A	; 106
+  66:	e6 ef       	ldi	r30, 0xF6	; 246
   68:	f4 e0       	ldi	r31, 0x04	; 4
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	a4 34       	cpi	r26, 0x44	; 68
+  70:	a6 37       	cpi	r26, 0x76	; 118
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
   76:	21 e0       	ldi	r18, 0x01	; 1
-  78:	a4 e4       	ldi	r26, 0x44	; 68
+  78:	a6 e7       	ldi	r26, 0x76	; 118
   7a:	b1 e0       	ldi	r27, 0x01	; 1
   7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -86,11 +86,11 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	a9 34       	cpi	r26, 0x49	; 73
+  80:	aa 37       	cpi	r26, 0x7A	; 122
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 b1 01 	call	0x362	; 0x362 <main>
-  8a:	0c 94 33 02 	jmp	0x466	; 0x466 <_exit>
+  8a:	0c 94 79 02 	jmp	0x4f2	; 0x4f2 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -313,7 +313,7 @@ void lcd_NumPrint(int a) {
  1a0:	30 e0       	ldi	r19, 0x00	; 0
  1a2:	40 e0       	ldi	r20, 0x00	; 0
  1a4:	50 e0       	ldi	r21, 0x00	; 0
- 1a6:	0e 94 11 02 	call	0x422	; 0x422 <__udivmodsi4>
+ 1a6:	0e 94 57 02 	call	0x4ae	; 0x4ae <__udivmodsi4>
  1aa:	67 2b       	or	r22, r23
  1ac:	68 2b       	or	r22, r24
  1ae:	69 2b       	or	r22, r25
@@ -338,7 +338,7 @@ void lcd_NumPrint(int a) {
  1c8:	30 e0       	ldi	r19, 0x00	; 0
  1ca:	40 e0       	ldi	r20, 0x00	; 0
  1cc:	50 e0       	ldi	r21, 0x00	; 0
- 1ce:	0e 94 11 02 	call	0x422	; 0x422 <__udivmodsi4>
+ 1ce:	0e 94 57 02 	call	0x4ae	; 0x4ae <__udivmodsi4>
  1d2:	49 01       	movw	r8, r18
  1d4:	5a 01       	movw	r10, r20
 			r+=48;
@@ -649,177 +649,303 @@ int main(void)
  376:	88 b3       	in	r24, 0x18	; 24
  378:	80 62       	ori	r24, 0x20	; 32
  37a:	88 bb       	out	0x18, r24	; 24
+	set_pin(PORTB,PINB4);
+ 37c:	88 b3       	in	r24, 0x18	; 24
+ 37e:	80 61       	ori	r24, 0x10	; 16
+ 380:	88 bb       	out	0x18, r24	; 24
 	
 	modes wlcm,menu,cnfrm;
 	
 	wlcm.mode_name = "Welcome!";
 	wlcm.mode_status = valid;
- 37c:	d1 e0       	ldi	r29, 0x01	; 1
+ 382:	d1 e0       	ldi	r29, 0x01	; 1
 	
 	menu.mode_name = "Menu";
 	menu.mode_status = invalid;
- 37e:	c0 e0       	ldi	r28, 0x00	; 0
+ 384:	c0 e0       	ldi	r28, 0x00	; 0
 	
 	cnfrm.mode_name = "Confirm order?";
 	cnfrm.mode_status = invalid;
- 380:	10 e0       	ldi	r17, 0x00	; 0
+ 386:	10 e0       	ldi	r17, 0x00	; 0
 	
 	__init_lcd_();
- 382:	0e 94 6b 00 	call	0xd6	; 0xd6 <__init_lcd_>
+ 388:	0e 94 6b 00 	call	0xd6	; 0xd6 <__init_lcd_>
 	int selection = -1;
+	flag confirmation=invalid;
 	previtem=item;
- 386:	80 91 45 01 	lds	r24, 0x0145	; 0x800145 <item>
- 38a:	90 91 46 01 	lds	r25, 0x0146	; 0x800146 <item+0x1>
- 38e:	90 93 48 01 	sts	0x0148, r25	; 0x800148 <previtem+0x1>
- 392:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <previtem>
+ 38c:	80 91 76 01 	lds	r24, 0x0176	; 0x800176 <__data_end>
+ 390:	90 91 77 01 	lds	r25, 0x0177	; 0x800177 <__data_end+0x1>
+ 394:	90 93 79 01 	sts	0x0179, r25	; 0x800179 <previtem+0x1>
+ 398:	80 93 78 01 	sts	0x0178, r24	; 0x800178 <previtem>
+	cnfrm.mode_name = "Confirm order?";
+	cnfrm.mode_status = invalid;
+	
+	__init_lcd_();
+	int selection = -1;
+	flag confirmation=invalid;
+ 39c:	00 e0       	ldi	r16, 0x00	; 0
 	
 	cnfrm.mode_name = "Confirm order?";
 	cnfrm.mode_status = invalid;
 	
 	__init_lcd_();
 	int selection = -1;
- 396:	ee 24       	eor	r14, r14
- 398:	ea 94       	dec	r14
- 39a:	fe 2c       	mov	r15, r14
+ 39e:	ee 24       	eor	r14, r14
+ 3a0:	ea 94       	dec	r14
+ 3a2:	fe 2c       	mov	r15, r14
+	flag confirmation=invalid;
 	previtem=item;
     while (1)  
     {
 		//--main framework for the vending machine--
 		if(wlcm.mode_status == valid){
- 39c:	d1 30       	cpi	r29, 0x01	; 1
- 39e:	51 f4       	brne	.+20     	; 0x3b4 <main+0x52>
+ 3a4:	d1 30       	cpi	r29, 0x01	; 1
+ 3a6:	51 f4       	brne	.+20     	; 0x3bc <main+0x5a>
 			lcd_FloatingPrint("Welcome!        A project by Yashesvi(happikin)                ");
- 3a0:	8b e7       	ldi	r24, 0x7B	; 123
- 3a2:	90 e0       	ldi	r25, 0x00	; 0
- 3a4:	0e 94 13 01 	call	0x226	; 0x226 <lcd_FloatingPrint>
+ 3a8:	8b e7       	ldi	r24, 0x7B	; 123
+ 3aa:	90 e0       	ldi	r25, 0x00	; 0
+ 3ac:	0e 94 13 01 	call	0x226	; 0x226 <lcd_FloatingPrint>
 			lcd_cmd(clearLCD);
- 3a8:	81 e0       	ldi	r24, 0x01	; 1
- 3aa:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+ 3b0:	81 e0       	ldi	r24, 0x01	; 1
+ 3b2:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
 			wlcm.mode_status = invalid;
- 3ae:	d0 e0       	ldi	r29, 0x00	; 0
+ 3b6:	d0 e0       	ldi	r29, 0x00	; 0
 			menu.mode_status = valid;
- 3b0:	c1 e0       	ldi	r28, 0x01	; 1
- 3b2:	2e c0       	rjmp	.+92     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3b8:	c1 e0       	ldi	r28, 0x01	; 1
+ 3ba:	f4 cf       	rjmp	.-24     	; 0x3a4 <main+0x42>
 		}
 		else if(menu.mode_status == valid) {
- 3b4:	c1 30       	cpi	r28, 0x01	; 1
- 3b6:	b1 f4       	brne	.+44     	; 0x3e4 <main+0x82>
+ 3bc:	c1 30       	cpi	r28, 0x01	; 1
+ 3be:	f1 f4       	brne	.+60     	; 0x3fc <main+0x9a>
+			lcd_cmd(clearLCD);
+ 3c0:	81 e0       	ldi	r24, 0x01	; 1
+ 3c2:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+			lcd_curPos(0,0);
+ 3c6:	60 e0       	ldi	r22, 0x00	; 0
+ 3c8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ca:	0e 94 a7 00 	call	0x14e	; 0x14e <lcd_curPos>
 			lcd_print("make a selection");
- 3b8:	8b eb       	ldi	r24, 0xBB	; 187
- 3ba:	90 e0       	ldi	r25, 0x00	; 0
- 3bc:	0e 94 9a 00 	call	0x134	; 0x134 <lcd_print>
- 3c0:	2f ef       	ldi	r18, 0xFF	; 255
- 3c2:	8b e7       	ldi	r24, 0x7B	; 123
- 3c4:	92 e9       	ldi	r25, 0x92	; 146
- 3c6:	21 50       	subi	r18, 0x01	; 1
- 3c8:	80 40       	sbci	r24, 0x00	; 0
- 3ca:	90 40       	sbci	r25, 0x00	; 0
- 3cc:	e1 f7       	brne	.-8      	; 0x3c6 <main+0x64>
- 3ce:	00 c0       	rjmp	.+0      	; 0x3d0 <main+0x6e>
- 3d0:	00 00       	nop
+ 3ce:	8b eb       	ldi	r24, 0xBB	; 187
+ 3d0:	90 e0       	ldi	r25, 0x00	; 0
+ 3d2:	0e 94 9a 00 	call	0x134	; 0x134 <lcd_print>
+ 3d6:	2f ef       	ldi	r18, 0xFF	; 255
+ 3d8:	8b e7       	ldi	r24, 0x7B	; 123
+ 3da:	92 e9       	ldi	r25, 0x92	; 146
+ 3dc:	21 50       	subi	r18, 0x01	; 1
+ 3de:	80 40       	sbci	r24, 0x00	; 0
+ 3e0:	90 40       	sbci	r25, 0x00	; 0
+ 3e2:	e1 f7       	brne	.-8      	; 0x3dc <main+0x7a>
+ 3e4:	00 c0       	rjmp	.+0      	; 0x3e6 <main+0x84>
+ 3e6:	00 00       	nop
+			confirmation = invalid;
+			selection = -1;
 			_delay_ms(3000);
 			selection = menu_nav();
- 3d2:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <menu_nav>
- 3d6:	7c 01       	movw	r14, r24
+ 3e8:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <menu_nav>
+ 3ec:	7c 01       	movw	r14, r24
 			lcd_cmd(clearLCD);
- 3d8:	81 e0       	ldi	r24, 0x01	; 1
- 3da:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+ 3ee:	81 e0       	ldi	r24, 0x01	; 1
+ 3f0:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
 			//if menu selection is done then 
 			menu.mode_status = invalid;
- 3de:	c0 e0       	ldi	r28, 0x00	; 0
+ 3f4:	c0 e0       	ldi	r28, 0x00	; 0
 			cnfrm.mode_status = valid;
- 3e0:	11 e0       	ldi	r17, 0x01	; 1
- 3e2:	16 c0       	rjmp	.+44     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3f6:	11 e0       	ldi	r17, 0x01	; 1
+		}
+		else if(menu.mode_status == valid) {
+			lcd_cmd(clearLCD);
+			lcd_curPos(0,0);
+			lcd_print("make a selection");
+			confirmation = invalid;
+ 3f8:	00 e0       	ldi	r16, 0x00	; 0
+ 3fa:	d4 cf       	rjmp	.-88     	; 0x3a4 <main+0x42>
+			lcd_cmd(clearLCD);
+			//if menu selection is done then 
+			menu.mode_status = invalid;
+			cnfrm.mode_status = valid;
 		}
 		else if(cnfrm.mode_status == valid) {
- 3e4:	11 30       	cpi	r17, 0x01	; 1
- 3e6:	a1 f4       	brne	.+40     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3fc:	11 30       	cpi	r17, 0x01	; 1
+ 3fe:	91 f6       	brne	.-92     	; 0x3a4 <main+0x42>
 			lcd_cmd(clearLCD);
- 3e8:	81 e0       	ldi	r24, 0x01	; 1
- 3ea:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+ 400:	81 e0       	ldi	r24, 0x01	; 1
+ 402:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
 			lcd_NumPrint(selection);
- 3ee:	c7 01       	movw	r24, r14
- 3f0:	0e 94 b5 00 	call	0x16a	; 0x16a <lcd_NumPrint>
- 3f4:	2f ef       	ldi	r18, 0xFF	; 255
- 3f6:	8f e4       	ldi	r24, 0x4F	; 79
- 3f8:	93 ec       	ldi	r25, 0xC3	; 195
- 3fa:	21 50       	subi	r18, 0x01	; 1
- 3fc:	80 40       	sbci	r24, 0x00	; 0
- 3fe:	90 40       	sbci	r25, 0x00	; 0
- 400:	e1 f7       	brne	.-8      	; 0x3fa <main+0x98>
- 402:	00 c0       	rjmp	.+0      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
- 404:	00 00       	nop
-			_delay_ms(4000);
+ 406:	c7 01       	movw	r24, r14
+ 408:	0e 94 b5 00 	call	0x16a	; 0x16a <lcd_NumPrint>
+ 40c:	2f ef       	ldi	r18, 0xFF	; 255
+ 40e:	8d e3       	ldi	r24, 0x3D	; 61
+ 410:	99 e4       	ldi	r25, 0x49	; 73
+ 412:	21 50       	subi	r18, 0x01	; 1
+ 414:	80 40       	sbci	r24, 0x00	; 0
+ 416:	90 40       	sbci	r25, 0x00	; 0
+ 418:	e1 f7       	brne	.-8      	; 0x412 <__EEPROM_REGION_LENGTH__+0x12>
+ 41a:	00 c0       	rjmp	.+0      	; 0x41c <__EEPROM_REGION_LENGTH__+0x1c>
+ 41c:	00 00       	nop
+			_delay_ms(1500);
 			lcd_cmd(clearLCD);
- 406:	81 e0       	ldi	r24, 0x01	; 1
- 408:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+ 41e:	81 e0       	ldi	r24, 0x01	; 1
+ 420:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+			lcd_curPos(1,0);
+ 424:	60 e0       	ldi	r22, 0x00	; 0
+ 426:	81 e0       	ldi	r24, 0x01	; 1
+ 428:	0e 94 a7 00 	call	0x14e	; 0x14e <lcd_curPos>
+			lcd_print("PRESS OK/CANCEL");
+ 42c:	8c ec       	ldi	r24, 0xCC	; 204
+ 42e:	90 e0       	ldi	r25, 0x00	; 0
+ 430:	0e 94 9a 00 	call	0x134	; 0x134 <lcd_print>
+			uint8_t choice = 0;
+ 434:	80 e0       	ldi	r24, 0x00	; 0
+			while(!choice) {
+ 436:	09 c0       	rjmp	.+18     	; 0x44a <__EEPROM_REGION_LENGTH__+0x4a>
+				if(_switch_ok_) {
+ 438:	b5 9b       	sbis	0x16, 5	; 22
+ 43a:	05 c0       	rjmp	.+10     	; 0x446 <__EEPROM_REGION_LENGTH__+0x46>
+					confirmation = valid;
+					choice = 1;
+				}
+				else if(_switch_cancel_) {
+ 43c:	b4 99       	sbic	0x16, 4	; 22
+ 43e:	05 c0       	rjmp	.+10     	; 0x44a <__EEPROM_REGION_LENGTH__+0x4a>
+					confirmation = invalid;
+					choice = 1;
+ 440:	81 e0       	ldi	r24, 0x01	; 1
+				if(_switch_ok_) {
+					confirmation = valid;
+					choice = 1;
+				}
+				else if(_switch_cancel_) {
+					confirmation = invalid;
+ 442:	00 e0       	ldi	r16, 0x00	; 0
+ 444:	02 c0       	rjmp	.+4      	; 0x44a <__EEPROM_REGION_LENGTH__+0x4a>
+			lcd_print("PRESS OK/CANCEL");
+			uint8_t choice = 0;
+			while(!choice) {
+				if(_switch_ok_) {
+					confirmation = valid;
+					choice = 1;
+ 446:	81 e0       	ldi	r24, 0x01	; 1
+			lcd_curPos(1,0);
+			lcd_print("PRESS OK/CANCEL");
+			uint8_t choice = 0;
+			while(!choice) {
+				if(_switch_ok_) {
+					confirmation = valid;
+ 448:	01 e0       	ldi	r16, 0x01	; 1
+			_delay_ms(1500);
+			lcd_cmd(clearLCD);
+			lcd_curPos(1,0);
+			lcd_print("PRESS OK/CANCEL");
+			uint8_t choice = 0;
+			while(!choice) {
+ 44a:	88 23       	and	r24, r24
+ 44c:	a9 f3       	breq	.-22     	; 0x438 <__EEPROM_REGION_LENGTH__+0x38>
+					confirmation = invalid;
+					choice = 1;
+				}
+			}
+			
+			if(confirmation == valid) {
+ 44e:	01 30       	cpi	r16, 0x01	; 1
+ 450:	a9 f4       	brne	.+42     	; 0x47c <__EEPROM_REGION_LENGTH__+0x7c>
+				lcd_cmd(clearLCD);
+ 452:	81 e0       	ldi	r24, 0x01	; 1
+ 454:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+				lcd_curPos(0,0);
+ 458:	60 e0       	ldi	r22, 0x00	; 0
+ 45a:	80 e0       	ldi	r24, 0x00	; 0
+ 45c:	0e 94 a7 00 	call	0x14e	; 0x14e <lcd_curPos>
+				lcd_print("ORDER CONFIRMED!");
+ 460:	8c ed       	ldi	r24, 0xDC	; 220
+ 462:	90 e0       	ldi	r25, 0x00	; 0
+ 464:	0e 94 9a 00 	call	0x134	; 0x134 <lcd_print>
+ 468:	2f ef       	ldi	r18, 0xFF	; 255
+ 46a:	87 ea       	ldi	r24, 0xA7	; 167
+ 46c:	91 e6       	ldi	r25, 0x61	; 97
+ 46e:	21 50       	subi	r18, 0x01	; 1
+ 470:	80 40       	sbci	r24, 0x00	; 0
+ 472:	90 40       	sbci	r25, 0x00	; 0
+ 474:	e1 f7       	brne	.-8      	; 0x46e <__EEPROM_REGION_LENGTH__+0x6e>
+ 476:	00 c0       	rjmp	.+0      	; 0x478 <__EEPROM_REGION_LENGTH__+0x78>
+ 478:	00 00       	nop
+ 47a:	16 c0       	rjmp	.+44     	; 0x4a8 <__EEPROM_REGION_LENGTH__+0xa8>
+				_delay_ms(2000);
+			} else if(confirmation == invalid) {
+ 47c:	01 11       	cpse	r16, r1
+ 47e:	14 c0       	rjmp	.+40     	; 0x4a8 <__EEPROM_REGION_LENGTH__+0xa8>
+				lcd_cmd(clearLCD);
+ 480:	81 e0       	ldi	r24, 0x01	; 1
+ 482:	0e 94 49 00 	call	0x92	; 0x92 <lcd_cmd>
+				lcd_curPos(0,0);
+ 486:	60 e0       	ldi	r22, 0x00	; 0
+ 488:	80 e0       	ldi	r24, 0x00	; 0
+ 48a:	0e 94 a7 00 	call	0x14e	; 0x14e <lcd_curPos>
+				lcd_print("ORDER CANCELLED!");
+ 48e:	8d ee       	ldi	r24, 0xED	; 237
+ 490:	90 e0       	ldi	r25, 0x00	; 0
+ 492:	0e 94 9a 00 	call	0x134	; 0x134 <lcd_print>
+ 496:	2f ef       	ldi	r18, 0xFF	; 255
+ 498:	87 ea       	ldi	r24, 0xA7	; 167
+ 49a:	91 e6       	ldi	r25, 0x61	; 97
+ 49c:	21 50       	subi	r18, 0x01	; 1
+ 49e:	80 40       	sbci	r24, 0x00	; 0
+ 4a0:	90 40       	sbci	r25, 0x00	; 0
+ 4a2:	e1 f7       	brne	.-8      	; 0x49c <__EEPROM_REGION_LENGTH__+0x9c>
+ 4a4:	00 c0       	rjmp	.+0      	; 0x4a6 <__EEPROM_REGION_LENGTH__+0xa6>
+ 4a6:	00 00       	nop
+				_delay_ms(2000);
+			}
 			//if confirmed the selection then
 			//display thank you!
 			// if declined then
 			cnfrm.mode_status = invalid;
- 40c:	10 e0       	ldi	r17, 0x00	; 0
+ 4a8:	10 e0       	ldi	r17, 0x00	; 0
 			menu.mode_status = valid;
- 40e:	c1 e0       	ldi	r28, 0x01	; 1
-		}		
-		//- - - - - - - - - - - - - - - - - - - - -
-		
-		
-		
-		if(_switch_up_) {
- 410:	b7 99       	sbic	0x16, 7	; 22
- 412:	04 c0       	rjmp	.+8      	; 0x41c <__EEPROM_REGION_LENGTH__+0x1c>
-			sw_up  = 1;
- 414:	81 e0       	ldi	r24, 0x01	; 1
- 416:	80 93 44 01 	sts	0x0144, r24	; 0x800144 <__data_end>
- 41a:	c0 cf       	rjmp	.-128    	; 0x39c <main+0x3a>
-		}
-		else {
-			sw_up = 0;
- 41c:	10 92 44 01 	sts	0x0144, r1	; 0x800144 <__data_end>
- 420:	bd cf       	rjmp	.-134    	; 0x39c <main+0x3a>
+ 4aa:	c1 e0       	ldi	r28, 0x01	; 1
+ 4ac:	7b cf       	rjmp	.-266    	; 0x3a4 <main+0x42>
 
-00000422 <__udivmodsi4>:
- 422:	a1 e2       	ldi	r26, 0x21	; 33
- 424:	1a 2e       	mov	r1, r26
- 426:	aa 1b       	sub	r26, r26
- 428:	bb 1b       	sub	r27, r27
- 42a:	fd 01       	movw	r30, r26
- 42c:	0d c0       	rjmp	.+26     	; 0x448 <__udivmodsi4_ep>
+000004ae <__udivmodsi4>:
+ 4ae:	a1 e2       	ldi	r26, 0x21	; 33
+ 4b0:	1a 2e       	mov	r1, r26
+ 4b2:	aa 1b       	sub	r26, r26
+ 4b4:	bb 1b       	sub	r27, r27
+ 4b6:	fd 01       	movw	r30, r26
+ 4b8:	0d c0       	rjmp	.+26     	; 0x4d4 <__udivmodsi4_ep>
 
-0000042e <__udivmodsi4_loop>:
- 42e:	aa 1f       	adc	r26, r26
- 430:	bb 1f       	adc	r27, r27
- 432:	ee 1f       	adc	r30, r30
- 434:	ff 1f       	adc	r31, r31
- 436:	a2 17       	cp	r26, r18
- 438:	b3 07       	cpc	r27, r19
- 43a:	e4 07       	cpc	r30, r20
- 43c:	f5 07       	cpc	r31, r21
- 43e:	20 f0       	brcs	.+8      	; 0x448 <__udivmodsi4_ep>
- 440:	a2 1b       	sub	r26, r18
- 442:	b3 0b       	sbc	r27, r19
- 444:	e4 0b       	sbc	r30, r20
- 446:	f5 0b       	sbc	r31, r21
+000004ba <__udivmodsi4_loop>:
+ 4ba:	aa 1f       	adc	r26, r26
+ 4bc:	bb 1f       	adc	r27, r27
+ 4be:	ee 1f       	adc	r30, r30
+ 4c0:	ff 1f       	adc	r31, r31
+ 4c2:	a2 17       	cp	r26, r18
+ 4c4:	b3 07       	cpc	r27, r19
+ 4c6:	e4 07       	cpc	r30, r20
+ 4c8:	f5 07       	cpc	r31, r21
+ 4ca:	20 f0       	brcs	.+8      	; 0x4d4 <__udivmodsi4_ep>
+ 4cc:	a2 1b       	sub	r26, r18
+ 4ce:	b3 0b       	sbc	r27, r19
+ 4d0:	e4 0b       	sbc	r30, r20
+ 4d2:	f5 0b       	sbc	r31, r21
 
-00000448 <__udivmodsi4_ep>:
- 448:	66 1f       	adc	r22, r22
- 44a:	77 1f       	adc	r23, r23
- 44c:	88 1f       	adc	r24, r24
- 44e:	99 1f       	adc	r25, r25
- 450:	1a 94       	dec	r1
- 452:	69 f7       	brne	.-38     	; 0x42e <__udivmodsi4_loop>
- 454:	60 95       	com	r22
- 456:	70 95       	com	r23
- 458:	80 95       	com	r24
- 45a:	90 95       	com	r25
- 45c:	9b 01       	movw	r18, r22
- 45e:	ac 01       	movw	r20, r24
- 460:	bd 01       	movw	r22, r26
- 462:	cf 01       	movw	r24, r30
- 464:	08 95       	ret
+000004d4 <__udivmodsi4_ep>:
+ 4d4:	66 1f       	adc	r22, r22
+ 4d6:	77 1f       	adc	r23, r23
+ 4d8:	88 1f       	adc	r24, r24
+ 4da:	99 1f       	adc	r25, r25
+ 4dc:	1a 94       	dec	r1
+ 4de:	69 f7       	brne	.-38     	; 0x4ba <__udivmodsi4_loop>
+ 4e0:	60 95       	com	r22
+ 4e2:	70 95       	com	r23
+ 4e4:	80 95       	com	r24
+ 4e6:	90 95       	com	r25
+ 4e8:	9b 01       	movw	r18, r22
+ 4ea:	ac 01       	movw	r20, r24
+ 4ec:	bd 01       	movw	r22, r26
+ 4ee:	cf 01       	movw	r24, r30
+ 4f0:	08 95       	ret
 
-00000466 <_exit>:
- 466:	f8 94       	cli
+000004f2 <_exit>:
+ 4f2:	f8 94       	cli
 
-00000468 <__stop_program>:
- 468:	ff cf       	rjmp	.-2      	; 0x468 <__stop_program>
+000004f4 <__stop_program>:
+ 4f4:	ff cf       	rjmp	.-2      	; 0x4f4 <__stop_program>
